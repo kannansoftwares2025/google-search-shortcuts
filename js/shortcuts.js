@@ -46,13 +46,18 @@
         event.stopPropagation();
         shortcuts.focusResult(shouldNavigateNext ? 1 : -1);
       } else if (shouldActivateSearch) {
-        // Otherwise, force caret to end of text and focus the search box
-        if (options.addSpaceOnFocus) {
-          searchBox.value += ' ';
+        if (options.selectAllOnSearchActivation) {
+          searchBox.focus();
+          searchBox.select();
+        } else {
+          // Otherwise, force caret to end of text and focus the search box
+          if (options.addSpaceOnFocus) {
+            searchBox.value += ' ';
+          }
+          const searchBoxLength = searchBox.value.length;
+          searchBox.focus();
+          searchBox.setSelectionRange(searchBoxLength, searchBoxLength);
         }
-        const searchBoxLength = searchBox.value.length;
-        searchBox.focus();
-        searchBox.setSelectionRange(searchBoxLength, searchBoxLength);
       } else if (shouldActivateSearchAndHighlightText) {
         window.scrollTo(0, 0);
         searchBox.focus();
@@ -62,10 +67,15 @@
 
     window.addEventListener('keyup', (event) => {
       if (!shortcuts.isInputActive() && !shortcuts.hasModifierKey(event) && options.navigateWithJK && event.key === KEYS.SLASH) {
-        if (options.addSpaceOnFocus) {
-          searchBox.value += ' ';
+        if (options.selectAllOnSearchActivation) {
+          searchBox.focus();
+          searchBox.select();
+        } else {
+          if (options.addSpaceOnFocus) {
+            searchBox.value += ' ';
+          }
+          searchBox.focus();
         }
-        searchBox.focus();
       }
     });
   };

@@ -20,6 +20,7 @@
     document.getElementById('autoSelectFirst').checked = extOptions.autoselectFirst;
     document.getElementById('selectTextInSearchBox').checked = extOptions.selectTextInSearchbox;
     document.getElementById('addSpaceOnFocus').checked = extOptions.addSpaceOnFocus;
+    document.getElementById('selectAllOnSearchActivation').checked = extOptions.selectAllOnSearchActivation;
   }
 
   function saveOptions() {
@@ -32,6 +33,7 @@
     extOptions.autoselectFirst = document.getElementById('autoSelectFirst').checked === true;
     extOptions.selectTextInSearchbox = document.getElementById('selectTextInSearchBox').checked === true;
     extOptions.addSpaceOnFocus = document.getElementById('addSpaceOnFocus').checked === true;
+    extOptions.selectAllOnSearchActivation = document.getElementById('selectAllOnSearchActivation').checked === true;
     persistOptions();
   }
 

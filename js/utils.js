@@ -27,7 +27,10 @@ const shortcuts = {
     selectTextInSearchbox: false,
 
     // Add space on focus
-    addSpaceOnFocus: true
+    addSpaceOnFocus: true,
+
+    // Select all text on search activation
+    selectAllOnSearchActivation: false
   },
 
   focusIndex: -1,
